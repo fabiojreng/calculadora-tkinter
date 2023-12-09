@@ -6,8 +6,9 @@ class Calculadora(tk.Tk):
         self.title("Calculadora")
         self.geometry("300x400")
         self.resizable(True, True)
-        self.maxsize(350, 400)
-        self.minsize(280, 320)
+        self.maxsize(400, 500)
+        self.minsize(250, 300)
+        self.bind("<Key>", self.on_key_press)# manipulador de eventos para as teclas
         self.result_var = tk.StringVar()
         self.create_widgets()
 
@@ -23,15 +24,20 @@ class Calculadora(tk.Tk):
             '1', '2', '3', '-',
             '0', '.', '=', '+'
         ]
+        
+        # Configuração da grade para expandir os botões com o tamanho da janela
+        for i in range(4):
+            self.grid_columnconfigure(i, weight=1)
+            self.grid_rowconfigure(i + 1, weight=1)
 
         row_val = 1
         col_val = 0
 
         for button in buttons:
             if button in ['/', '*', '-', '+', '=']:
-                tk.Button(self, text=button, padx=20, pady=20, font=('Arial', 14), command=lambda b=button: self.on_button_click(b), bg='orange').grid(row=row_val, column=col_val)
+                tk.Button(self, text=button, padx=20, pady=20, font=('Arial', 14), command=lambda b=button: self.on_button_click(b), bg='orange').grid(row=row_val, column=col_val, sticky="nsew")
             else:
-                tk.Button(self, text=button, padx=20, pady=20, font=('Arial', 14), command=lambda b=button: self.on_button_click(b)).grid(row=row_val, column=col_val)
+                tk.Button(self, text=button, padx=20, pady=20, font=('Arial', 14), command=lambda b=button: self.on_button_click(b)).grid(row=row_val, column=col_val, sticky="nsew")
             col_val += 1
             if col_val > 3:
                 col_val = 0
@@ -48,6 +54,12 @@ class Calculadora(tk.Tk):
                 self.result_var.set("Erro")
         else:
             self.result_var.set(current_text + button)
+
+    def on_key_press(self, event):
+        key = event.char
+
+        if key.isdigit() or key in ['/', '*', '-', '+', '=', '.', "/r"]:
+            self.on_button_click(key)
 
 if __name__ == "__main__":
     app = Calculadora()

@@ -5,7 +5,9 @@ class Calculadora(tk.Tk):
         super().__init__()
         self.title("Calculadora")
         self.geometry("300x400")
-        self.resizable(False, False)
+        self.resizable(True, True)
+        self.maxsize(350, 400)
+        self.minsize(280, 320)
         self.result_var = tk.StringVar()
         self.create_widgets()
 
@@ -26,7 +28,10 @@ class Calculadora(tk.Tk):
         col_val = 0
 
         for button in buttons:
-            tk.Button(self, text=button, padx=20, pady=20, font=('Arial', 14), command=lambda b=button: self.on_button_click(b)).grid(row=row_val, column=col_val)
+            if button in ['/', '*', '-', '+', '=']:
+                tk.Button(self, text=button, padx=20, pady=20, font=('Arial', 14), command=lambda b=button: self.on_button_click(b), bg='orange').grid(row=row_val, column=col_val)
+            else:
+                tk.Button(self, text=button, padx=20, pady=20, font=('Arial', 14), command=lambda b=button: self.on_button_click(b)).grid(row=row_val, column=col_val)
             col_val += 1
             if col_val > 3:
                 col_val = 0

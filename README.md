@@ -5,16 +5,23 @@ Essa é uma simples calculadora desenvolvida em Python utilizando a biblioteca T
 Certifique-se de ter o Python instalado em seu sistema. Você pode baixar a versão mais recente do Python em python.org.
 
 # Como usar
-Clone o repositório:
-bash
+1. Clone o repositório:
+´´´bash
 git clone https://github.com/seu-usuario/calculadora-tkinter-python.git
-bash
+´´´
+2. Navegue até o diretório do projeto:
+´´´bash
 cd calculadora-tkinter-python
-bash
+´´´
+3. Instale as dependências (Tkinter é geralmente incluído com as instalações padrão do Python):
+´´´bash
 pip install tk
-bash
+´´´
+4. Execute o script:
+´´´bash
 python calculadora.py
-4. Use a calculadora:
+´´´
+5. Use a calculadora:
 A interface gráfica fornecerá botões para números de 0 a 9, operadores de adição, subtração, multiplicação e divisão, além de botões para limpar a entrada e calcular o resultado.
 
 # Estrutura do Projeto
